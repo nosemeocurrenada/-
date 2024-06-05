@@ -3,14 +3,14 @@ from time import time
 import librosa
 import ot
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy.io import wavfile
 
 SR = 48000
 NFFT = 1024 * 4
 VERBOSE = True
 VENTANA = "blackman"
-METRIC = "cityblock"
+METRIC = "minkowski"
+p = 2
 
 source = "retro_loop.wav"
 target = "whoosh1.wav"
@@ -22,7 +22,7 @@ def transport(espectro_c, espectro_o):
     n = len(a)
     a /= np.sum(a)
     b /= np.sum(b)
-    T_mat = ot.emd_1d(a, b, a, b, metric="minkowski", p=2)
+    T_mat = ot.emd_1d(a, b, a, b, metric=METRIC, p=p)
     print("Transporte óptimo resuelto")
 
     return T_mat.transpose() @ espectro_c
@@ -35,7 +35,8 @@ t.ultimo = None
 def print_benchmark(msg):
     total = time() - t.inicial
     dt = time() - t.ultimo
-    print(msg, '\t', f'dt:{dt:.2f}', '\t', f'total:{total:.2f}')
+    t.ultimo = time()
+    print(msg, '\t', f'dt:{dt:.2f}s', '\t', f'total:{total:.2f}s')
 
 def do_magic(source, target):
     carrier, _ = librosa.load(source, sr=SR)

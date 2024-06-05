@@ -7,8 +7,7 @@ aplica el transporte de `dua_lipa.wav` en `acorde_piola.wav`, y lo guarda en `re
 ## Requerimientos
 - tkinter
 	En mi sistema viene con el paquete `python3-tk`
-- tkdnd
-	Binarios en https://sourceforge.net/projects/tkdnd/
-- TkinterDnD2
-	deberia reconocerlo del directorio local
-	me lo traje de https://sourceforge.net/projects/tkinterdnd/
+- librosa
+- pot
+- tkinterdnd2
+Los ultimos tres deberian instalarse con `pip install -r requirements.txt`

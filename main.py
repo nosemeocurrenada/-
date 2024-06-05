@@ -1,11 +1,11 @@
 import os
 import platform
 from urllib.parse import unquote, urlparse
-from TkinterDnD2 import *
+from tkinterdnd2 import *
 from tkinter import Label, Frame, Button, Listbox, Text, LEFT, END, TkVersion
 from efectos import transporte_optimo
 
-DEBUG_EVENT = True
+DEBUG_EVENT = False
 def debug_event(*args):
     if DEBUG_EVENT:
         print(*args)
@@ -14,7 +14,7 @@ def convertir():
     source = carrier.get(0)
     target = objetivo.get(0)
     outfile = salida.get(0.0, END)
-    print(f'CONVERTIR {source},{target},{outfile}')
+    print(f'Convertir {source},{target},{outfile}')
     transporte_optimo(source,target,outfile)
 
 root = TkinterDnD.Tk()
